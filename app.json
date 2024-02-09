@@ -1,0 +1,8 @@
+{
+  "name": "eFlashGerman",
+  "displayName": "German Flashcards for Kids",
+   "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-3339897183017333~7756153180",
+    "ios_app_id": "ca-app-pub-3339897183017333~4842741917"
+  }
+}

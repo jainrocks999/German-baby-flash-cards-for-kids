@@ -1,0 +1,20 @@
+image 
+ {"ActualSound": "", "Category": "Food", "Image": "chips.jpg", "LenguageText": "Chips", "Sound": "chips.mp3", "Title": "Chips", "_id": 4}
+ {"ActualSound": "", "Category": "Food", "Image": "french_fries.jpg", "LenguageText": "Pommes frites", "Sound": "french_fries.mp3", "Title": "French fries", "_id": 49}
+ {"ActualSound": "", "Category": "Food", "Image": "spinach.jpg", "LenguageText": "Spinat", "Sound": "spinach.mp3", "Title": "Spinach", "_id": 172}
+ {"ActualSound": "", "Category": "Animal", "Image": "guinea_pig.jpg", "LenguageText": "Meerschweinchen", "Sound": "guinea_pig.mp3", "Title": "Guinea pig", "_id": 228}
+ {"ActualSound": "", "Category": "Animal", "Image": "hedgehog.jpg", "LenguageText": "Igel", "Sound": "hedgehog.mp3", "Title": "Hedgehog", "_id": 192}
+ {"ActualSound": "act-mouse.mp3", "Category": "Animal", "Image": "nest.jpg", "LenguageText": "Maus", "Sound": "mouse.mp3", "Title": "Mouse", "_id": 120}
+ {"ActualSound": "", "Category": "Alphabet", "Image": "p.jpg", "LenguageText": "Q für qualle", "Sound": "q.mp3", "Title": "Q", "_id": 322}
+ {"ActualSound": "", "Category": "Colors", "Image": "biege.jpg", "LenguageText": "Beige", "Sound": "beige.mp3", "Title": "Beige", "_id": 30}
+ {"ActualSound": "", "Category": "Colors", "Image": "gray.jpg", "LenguageText": "Grau", "Sound": "grey.mp3", "Title": "Grey", "_id": 28}
+ {"ActualSound": "", "Category": "HomeItems", "Image": "vase.jpg", "LenguageText": "Vase", "Sound": "vase.mp3", "Title": "Vase", "_id": 243}
+ {"ActualSound": "", "Category": "BodyParts", "Image": "bellyButton.jpg", "LenguageText": "Bauchnabel", "Sound": "belly button.mp3", "Title": "Belly Button", "_id": 277}
+ {"ActualSound": "", "Category": "Transport", "Image": "tricycle.jpg", "LenguageText": "Dreirad", "Sound": "tricycle.mp3", "Title": "Tricycle", "_id": 287}
+
+
+new changes 
+{"ActualSound": "", "Category": "OutdoorItems", "Image": "outdoorItems.jpg", "LenguageText": "Rutsche", "Sound": "slide.mp3", "Title": "Slide", "_id": 395}
+
+ sound
+  {"ActualSound": "act_log", "Category": "OutdoorItems", "Image": "log.jpg", "LenguageText": "Baumstamm", "Sound": "log.mp3", "Title": "Log", "_id": 390}
