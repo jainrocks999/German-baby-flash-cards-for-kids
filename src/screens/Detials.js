@@ -8,6 +8,7 @@ import {
   Alert,
   Platform,
   SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
@@ -69,7 +70,10 @@ const Detials = props => {
     portugues: '',
   });
   const [count, setCount] = useState(0);
-  const [Music, setMusic] = useState([]);
+  const [Music, setMusic] = useState({
+    isActualSound: false,
+    Music: [],
+  });
   const navigation = useNavigation();
   useEffect(() => {
     getData();
@@ -139,23 +143,22 @@ const Detials = props => {
     let y = data.length;
     if (count >= 0 && count <= y - 1) {
       console.log(newData[count]);
-
       ActualSound = newData[count].ActualSound;
       Imagess = `${path}${newData[count].Image}`;
       Titel = newData[count].Title;
       track = {
-        url: `${path}${newData[count].Sound?.replace(/[- ]/g, '_')}`, // Load media from the file system
+        url: `${path}${newData[count].Sound.replace(/[- ]/g, '_')}`,
         title: Titel,
         artist: 'eFlashApps',
-        // Load artwork from the file system:
+
         artwork: `${path}${newData[count].Sound?.replace(/ /g, '_')}`,
         duration: null,
       };
       track2 = {
-        url: `${path}${newData[count].ActualSound?.replace(/[- ]/g, '_')}`, // Load media from the file system
+        url: `${path}${newData[count].ActualSound?.replace(/[- ]/g, '_')}`,
         title: Titel,
         artist: 'eFlashApps',
-        // Load artwork from the file system:
+
         artwork: `${path}${newData[count].Sound?.replace(/ /g, '_')}`,
         duration: null,
       };
@@ -170,13 +173,16 @@ const Detials = props => {
       english: Titel,
       portugues: newData[count]?.LenguageText,
     });
-
-    if (ActualSound && setting.ActualSound == 1 && setting.Voice == 1) {
-      setMusic([track2, track]);
-    } else if (ActualSound && setting.ActualSound == 1) {
-      setMusic(track2);
+    if (newData.ActualSound) {
+      setMusic({
+        isActualSound: true,
+        Music: [track2, track],
+      });
     } else {
-      setMusic(track);
+      setMusic({
+        isActualSound: false,
+        Music: [track],
+      });
     }
 
     if (isSetup) {
@@ -202,10 +208,19 @@ const Detials = props => {
     }
   }, [backSound.fromDetails == true]);
   const paly = async () => {
+    console.log(Music.isActualSound);
     const isSetup = await setupPlayer();
     await TrackPlayer.reset();
-    if(Music.length>1 && setting.ActualSound){
-    await TrackPlayer.add(Music);
+    if (Music.isActualSound) {
+      if (setting.ActualSound == 1 && setting.Voice == 1) {
+        await TrackPlayer.add(Music.Music);
+      } else if (setting.ActualSound == 1) {
+        await TrackPlayer.add(Music.Music[0]);
+      } else {
+        await TrackPlayer.add(Music.Music[1]);
+      }
+    } else if (setting.Voice == 1) {
+      await TrackPlayer.add(Music.Music);
     }
     if (isSetup) {
       await TrackPlayer.play();
@@ -214,6 +229,7 @@ const Detials = props => {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'grey'}}>
+      <StatusBar backgroundColor="grey" />
       <GestureRecognizer
         style={{flex: 1}}
         onSwipeLeft={() =>
@@ -245,10 +261,15 @@ const Detials = props => {
               <Text style={styles.Titel}>
                 {setting.English ? Title.portugues : ''}
               </Text>
-              <Text
-                style={[styles.Titel, {fontSize: wp(4), fontWeight: '500'}]}>
-                {setting.English ? Title.english : ''}
-              </Text>
+              {Title.english != '' ? (
+                <Text
+                  style={[
+                    styles.Titel,
+                    {fontSize: wp(3.5), fontWeight: '500'},
+                  ]}>
+                  {setting.English ? Title.english : ''}
+                </Text>
+              ) : null}
             </View>
             <TouchableOpacity
               onPress={async () => {
@@ -285,7 +306,7 @@ const Detials = props => {
           <View
             style={[
               styles.btnContainer,
-              setting.Swipe == 0 ? {flexDirection: 'row'} : undefined,
+              setting.Swipe == 0 ? {flexDirection: 'row'} : null,
             ]}>
             {setting.Swipe == 0 && (
               <TouchableOpacity
@@ -370,7 +391,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   Titel: {
-    fontSize: wp(5.5),
+    fontSize: wp(6),
     fontWeight: 'bold',
     color: 'white',
     alignSelf: 'center',
