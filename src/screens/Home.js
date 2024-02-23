@@ -68,7 +68,6 @@ const Home = () => {
             position: 'relative',
             width: '100%',
             bottom: 0,
-            borderWidth: 1,
             alignItems: 'center',
           }}>
           <BannerAd

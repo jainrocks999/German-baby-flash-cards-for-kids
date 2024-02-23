@@ -69,7 +69,7 @@ const Detials = props => {
     portugues: '',
   });
   const [count, setCount] = useState(0);
-  const [Music, setMusic] = useState();
+  const [Music, setMusic] = useState([]);
   const navigation = useNavigation();
   useEffect(() => {
     getData();
@@ -204,7 +204,9 @@ const Detials = props => {
   const paly = async () => {
     const isSetup = await setupPlayer();
     await TrackPlayer.reset();
+    if(Music.length>1 && setting.ActualSound){
     await TrackPlayer.add(Music);
+    }
     if (isSetup) {
       await TrackPlayer.play();
     }
@@ -271,7 +273,7 @@ const Detials = props => {
             {Images && (
               <Image
                 style={{
-                  height: height / 1.45,
+                  height: height / 1.6,
                   width: '100%',
                   alignItems: 'center',
                 }}
@@ -280,7 +282,11 @@ const Detials = props => {
               />
             )}
           </View>
-          <View style={[styles.btnContainer,setting.Swipe==0?{ flexDirection: 'row',}:undefined]}>
+          <View
+            style={[
+              styles.btnContainer,
+              setting.Swipe == 0 ? {flexDirection: 'row'} : undefined,
+            ]}>
             {setting.Swipe == 0 && (
               <TouchableOpacity
                 onPress={async () => {
@@ -305,7 +311,10 @@ const Detials = props => {
                 paly();
               }}>
               <Image
-                style={[styles.btn2, setting.Swipe == 1 && {alignSelf:'center'}]}
+                style={[
+                  styles.btn2,
+                  setting.Swipe == 1 && {alignSelf: 'center'},
+                ]}
                 source={require('../../Assets4/btnrepeat_normal.png')}
                 resizeMode="contain"
               />
@@ -350,7 +359,7 @@ export default Detials;
 const styles = StyleSheet.create({
   header: {
     height: height / 12,
-   flexDirection:'row',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'grey',
     paddingHorizontal: wp(2),
@@ -373,9 +382,9 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     position: 'absolute',
-    bottom: '4%',
+    bottom: '2%',
     width: '98%',
-  
+
     justifyContent: 'space-between',
     marginHorizontal: wp(1.5),
     alignSelf: 'center',
