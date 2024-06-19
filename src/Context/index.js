@@ -18,7 +18,7 @@ const IAPProvider = ({children}) => {
     if (purchase === constants.productSkus[0]) {
       setHasPurchased(true);
     } else {
-      setHasPurchased(true);
+      setHasPurchased(false);
     }
   };
   const checkPurchases = async bool => {
