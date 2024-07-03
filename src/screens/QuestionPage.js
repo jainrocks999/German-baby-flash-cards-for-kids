@@ -124,6 +124,8 @@ const QuestionPage = props => {
     let track2;
     traxck = WrongVoid.sort(() => Math.random() - 0.5)[1];
     track2 = RightVOid.sort(() => Math.random() - 0.5)[1];
+    console.log('wring>>>', traxck);
+    console.log('write>>>', track2);
 
     if (indexx === x) {
       setRight(true);
@@ -156,6 +158,8 @@ const QuestionPage = props => {
           break;
       }
     }
+    //asset:/files/youcandoit.mp3
+    //asset:/files/tryagain.mp3
 
     await TrackPlayer.play();
   };
@@ -252,7 +256,7 @@ const QuestionPage = props => {
             <FlatList
               data={rendomdat}
               numColumns={2}
-              keyExtractor={item => item.ID}
+              keyExtractor={(item, index) => item.ID}
               renderItem={({item, index}) => {
                 return (
                   <TouchableOpacity
